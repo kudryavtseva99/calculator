@@ -27,4 +27,9 @@
   height: 500px;
   border-radius: 20px;
   background: black;
+  font-family: "Rubik";
+  color: white;
+  font-weight: 500;
+  padding: 18px;
+  box-shadow: 4px 4px 4px #4f4f4f;
 }
