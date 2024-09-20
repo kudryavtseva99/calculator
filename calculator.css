@@ -1,54 +1,41 @@
-/* @font-face {
-  font-family: "Rubik";
-  src: url("Rubik-Regular.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} */
-
-@font-face {
-  font-family: "Rubik";
-  src: url("Rubik-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 .calc {
   margin: 50px auto;
   width: 356px;
-  height: 566px;
+  height: 536px;
   border-radius: 48px;
   background: #2d2a37;
   font-family: "Rubik";
   color: white;
-  font-weight: 500;
+  /* font-weight: 500; */
   padding: 18px;
   box-shadow: 0px 7px 7px #4f4f4f;
 }
 
 .calc-screen {
   height: 125px;
-  padding: 20px;
-  margin-bottom: 20px;
-  display: grid;
-  grid-template-areas:
-    "screen-values"
-    "calc-result";
+  padding: 25px;
 }
 
 .screen-values {
   text-align: right;
   color: #6b6b6b;
-  font-weight: 500;
+  /* font-weight: 500; */
+  margin-bottom: 20px;
 }
 
 .calc-result {
-  font-weight: 400;
+  /* font-weight: 400; */
   color: #ebebeb;
   font-size: 34px;
-  display: grid;
-  grid-template-areas: "screen-equal screen-number ";
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.screen-equal {
+  padding-top: 10px;
+  font-size: 20px;
+  color: #6b6b6b;
 }
 
 .keybord {
