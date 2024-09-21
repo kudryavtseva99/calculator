@@ -1,4 +1,4 @@
-const BTN_VALUES = Array.from(document.querySelectorAll(".figure")).map(
+const BTN_VALUES = Array.from(document.querySelectorAll(".digit")).map(
   (el) => el.innerHTML
 );
 // console.log(BTN_VALUES);
@@ -15,3 +15,16 @@ keybord.addEventListener("click", function (event) {
   }
   input.value = input.value + btnValue;
 });
+
+// логика для знака =
+
+const ac = document.querySelector(".ac");
+// const body = document.body;
+
+function deleteInputValue() {
+  if (input.value) {
+    input.value = "";
+  }
+}
+
+ac.addEventListener("click", deleteInputValue);
