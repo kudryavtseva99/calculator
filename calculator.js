@@ -28,3 +28,12 @@ function deleteInputValue() {
 }
 
 ac.addEventListener("click", deleteInputValue);
+
+// знак = на экране при нажатии на кнопку сделать ярче
+
+const equalButton = document.querySelector(".equal");
+const screen_equal = document.querySelector(".screen-equal");
+
+equalButton.addEventListener("click", () => {
+  screen_equal.classList.add("active");
+});
