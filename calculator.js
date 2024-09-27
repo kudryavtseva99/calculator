@@ -20,7 +20,7 @@ keybord.addEventListener("click", function (event) {
   input.value = input.value + btnValue;
 });
 
-const ac = document.querySelector(".ac");
+const ALL_CLEAR = document.querySelector(".ac");
 
 function deleteInputValue() {
   if (input.value) {
@@ -28,7 +28,7 @@ function deleteInputValue() {
   }
 }
 
-ac.addEventListener("click", deleteInputValue);
+ALL_CLEAR.addEventListener("click", deleteInputValue);
 
 // знак = на экране при нажатии на кнопку сделать ярче
 
