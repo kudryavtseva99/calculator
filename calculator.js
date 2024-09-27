@@ -48,6 +48,7 @@ function handleKeyboardClick(event) {
 function handleAllClearClick() {
   setInitialState();
   INPUT.value = "";
+  RESULT_SCREEN.innerHTML = 0;
 }
 
 function handleEqualClick() {
