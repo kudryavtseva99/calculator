@@ -7,7 +7,7 @@ let state = {
 
 const setState = (key, payload) => {
   state = { ...state, [key]: payload };
-  renderImmediateResult();
+  // renderImmediateResult();
 };
 
 function setInitialState() {
@@ -33,6 +33,7 @@ const SCREEN_EQUAL = document.querySelector(".screen-equal");
 KEYBOARD.addEventListener("click", handleKeyboardClick);
 ALL_CLEAR.addEventListener("click", handleAllClearClick);
 EQUAL_BUTTON.addEventListener("click", handleEqualClick);
+EQUAL_BUTTON.addEventListener("click", renderImmediateResult);
 PLUS_BUTTON.addEventListener("click", handlePlusClick);
 DIGIT_BUTTONS.forEach((btn) => btn.addEventListener("click", handleDigitClick));
 
