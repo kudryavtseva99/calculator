@@ -59,13 +59,13 @@ function handleEqualClick() {
 
 function handlePlusClick() {
   setState("currentOperation", "+");
-  setState("fixedResult", parseFloat(state.currentOperand));
+  // setState("fixedResult", parseFloat(state.currentOperand));
   setState("currentOperand", "");
 }
 
 function handleMultiplyClick() {
   setState("currentOperation", "x");
-  setState("fixedResult", parseFloat(state.currentOperand));
+  // setState("fixedResult", parseFloat(state.currentOperand));
   setState("currentOperand", "");
 }
 
@@ -87,9 +87,14 @@ function Calculator() {
 
   this.calculate = (operator) => {
     const { fixedResult, currentOperand, currentOperation } = state;
-    let nextResult = null;
+    let nextResult;
     if (!currentOperation) {
       nextResult = parseFloat(currentOperand);
+    } else if (nextResult) {
+      nextResult = this.Methods[operator](
+        nextResult,
+        parseFloat(currentOperand)
+      );
     } else {
       nextResult = this.methods[operator](
         fixedResult,
@@ -97,6 +102,7 @@ function Calculator() {
       );
     }
     setState("immediateResult", nextResult);
+    setState("fixedResult", nextResult);
   };
 }
 
