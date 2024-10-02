@@ -30,6 +30,8 @@ const RESULT_SCREEN = document.querySelector(".screen-number");
 const EQUAL_BUTTON = document.querySelector(".equal");
 const SCREEN_EQUAL = document.querySelector(".screen-equal");
 const MULTIPLY_BUTTON = document.querySelector(".multiply");
+const DIVISION_BUTTON = document.querySelector(".division");
+const MINUS_BUTTON = document.querySelector(".minus");
 
 KEYBOARD.addEventListener("click", handleKeyboardClick);
 ALL_CLEAR.addEventListener("click", handleAllClearClick);
@@ -37,6 +39,8 @@ EQUAL_BUTTON.addEventListener("click", handleEqualClick);
 EQUAL_BUTTON.addEventListener("click", renderImmediateResult);
 PLUS_BUTTON.addEventListener("click", handlePlusClick);
 MULTIPLY_BUTTON.addEventListener("click", handleMultiplyClick);
+DIVISION_BUTTON.addEventListener("click", handleDivisionClick);
+MINUS_BUTTON.addEventListener("click", handleMinusClick);
 DIGIT_BUTTONS.forEach((btn) => btn.addEventListener("click", handleDigitClick));
 
 function handleKeyboardClick(event) {
@@ -69,6 +73,16 @@ function handleMultiplyClick() {
   setState("currentOperand", "");
 }
 
+function handleDivisionClick() {
+  setState("currentOperation", "/");
+  setState("currentOperand", "");
+}
+
+function handleMinusClick() {
+  setState("currentOperation", "-");
+  setState("currentOperand", "");
+}
+
 function handleDigitClick(event) {
   const digit = event.target.innerHTML;
   const currentOperand = state.currentOperand;
@@ -82,7 +96,9 @@ function handleDigitClick(event) {
 function Calculator() {
   this.methods = {
     "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
     x: (a, b) => a * b,
+    "/": (a, b) => a / b,
   };
 
   this.calculate = (operator) => {
