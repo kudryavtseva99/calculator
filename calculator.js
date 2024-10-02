@@ -7,7 +7,7 @@ let state = {
 
 const setState = (key, payload) => {
   state = { ...state, [key]: payload };
-  // renderImmediateResult();
+  renderImmediateResult();
 };
 
 function setInitialState() {
@@ -29,12 +29,14 @@ const PLUS_BUTTON = document.querySelector(".plus");
 const RESULT_SCREEN = document.querySelector(".screen-number");
 const EQUAL_BUTTON = document.querySelector(".equal");
 const SCREEN_EQUAL = document.querySelector(".screen-equal");
+const MULTIPLY_BUTTON = document.querySelector(".multiply");
 
 KEYBOARD.addEventListener("click", handleKeyboardClick);
 ALL_CLEAR.addEventListener("click", handleAllClearClick);
 EQUAL_BUTTON.addEventListener("click", handleEqualClick);
 EQUAL_BUTTON.addEventListener("click", renderImmediateResult);
 PLUS_BUTTON.addEventListener("click", handlePlusClick);
+MULTIPLY_BUTTON.addEventListener("click", handleMultiplyClick);
 DIGIT_BUTTONS.forEach((btn) => btn.addEventListener("click", handleDigitClick));
 
 function handleKeyboardClick(event) {
@@ -61,12 +63,18 @@ function handlePlusClick() {
   setState("currentOperand", "");
 }
 
+function handleMultiplyClick() {
+  setState("currentOperation", "x");
+  setState("fixedResult", parseFloat(state.currentOperand));
+  setState("currentOperand", "");
+}
+
 function handleDigitClick(event) {
   const digit = event.target.innerHTML;
   const currentOperand = state.currentOperand;
   const nextOperand = currentOperand + digit;
   setState("currentOperand", nextOperand);
-  myCalc.calculate();
+  myCalc.calculate(state.currentOperation);
   console.log(state);
 }
 
@@ -74,15 +82,19 @@ function handleDigitClick(event) {
 function Calculator() {
   this.methods = {
     "+": (a, b) => a + b,
+    x: (a, b) => a * b,
   };
 
-  this.calculate = () => {
+  this.calculate = (operator) => {
     const { fixedResult, currentOperand, currentOperation } = state;
     let nextResult = null;
     if (!currentOperation) {
       nextResult = parseFloat(currentOperand);
     } else {
-      nextResult = fixedResult + parseFloat(currentOperand);
+      nextResult = this.methods[operator](
+        fixedResult,
+        parseFloat(currentOperand)
+      );
     }
     setState("immediateResult", nextResult);
   };
