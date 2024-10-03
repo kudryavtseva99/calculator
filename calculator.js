@@ -122,6 +122,10 @@ function Calculator() {
         parseFloat(currentOperand)
       );
     }
+    if (operator === "/" && state.currentOperand === "0") {
+      nextResult = "Ошибка";
+      setState("immediateResult", nextResult);
+    }
     setState("immediateResult", nextResult);
   };
 }
