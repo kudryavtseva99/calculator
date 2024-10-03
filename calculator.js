@@ -8,6 +8,7 @@ let state = {
 const setState = (key, payload) => {
   state = { ...state, [key]: payload };
   renderImmediateResult();
+  console.log(state);
 };
 
 function setInitialState() {
@@ -18,7 +19,7 @@ function setInitialState() {
 }
 
 const DIGIT_BUTTONS = document.querySelectorAll(".digit");
-// const SIGN = document.querySelectorAll(".operation");
+const OPERATOR_BUTTONS = document.querySelectorAll(".operation");
 const BTN_VALUES = Array.from(document.querySelectorAll(".button")).map(
   (el) => el.innerHTML
 );
@@ -42,6 +43,13 @@ MULTIPLY_BUTTON.addEventListener("click", handleMultiplyClick);
 DIVISION_BUTTON.addEventListener("click", handleDivisionClick);
 MINUS_BUTTON.addEventListener("click", handleMinusClick);
 DIGIT_BUTTONS.forEach((btn) => btn.addEventListener("click", handleDigitClick));
+OPERATOR_BUTTONS.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    if (state.currentOperation) {
+      setState("fixedResult", state.immediateResult);
+    }
+  });
+});
 
 function handleKeyboardClick(event) {
   const btnValue = event.target.innerHTML;
@@ -59,6 +67,8 @@ function handleAllClearClick() {
 
 function handleEqualClick() {
   SCREEN_EQUAL.classList.add("active");
+  // setState("currentOperation", "=");
+  // setState("currentOperand", "");
 }
 
 function handlePlusClick() {
@@ -86,10 +96,9 @@ function handleMinusClick() {
 function handleDigitClick(event) {
   const digit = event.target.innerHTML;
   const currentOperand = state.currentOperand;
-  const nextOperand = currentOperand + digit;
+  const nextOperand = `${currentOperand}${digit}`;
   setState("currentOperand", nextOperand);
   myCalc.calculate(state.currentOperation);
-  console.log(state);
 }
 
 // реализация вычислительных методов операндов
@@ -106,11 +115,7 @@ function Calculator() {
     let nextResult;
     if (!currentOperation) {
       nextResult = parseFloat(currentOperand);
-    } else if (nextResult) {
-      nextResult = this.Methods[operator](
-        nextResult,
-        parseFloat(currentOperand)
-      );
+      setState("fixedResult", nextResult);
     } else {
       nextResult = this.methods[operator](
         fixedResult,
@@ -118,7 +123,6 @@ function Calculator() {
       );
     }
     setState("immediateResult", nextResult);
-    setState("fixedResult", nextResult);
   };
 }
 
