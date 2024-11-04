@@ -24,10 +24,10 @@ const BTN_VALUES = Array.from(document.querySelectorAll(".button")).map(
   (el) => el.innerHTML
 );
 const KEYBOARD = document.querySelector(".keyboard");
-const INPUT = document.querySelector("#myInput");
-const ALL_CLEAR = document.querySelector(".ac");
+const INPUT = document.querySelector(".value-input");
+const ALL_CLEAR_BUTTON = document.querySelector(".ac");
 const PLUS_BUTTON = document.querySelector(".plus");
-const RESULT_SCREEN = document.querySelector(".screen-number");
+const RESULT_SCREEN = document.querySelector(".result");
 const EQUAL_BUTTON = document.querySelector(".equal");
 const SCREEN_EQUAL = document.querySelector(".screen-equal");
 const MULTIPLY_BUTTON = document.querySelector(".multiply");
@@ -35,7 +35,7 @@ const DIVISION_BUTTON = document.querySelector(".division");
 const MINUS_BUTTON = document.querySelector(".minus");
 
 KEYBOARD.addEventListener("click", handleKeyboardClick);
-ALL_CLEAR.addEventListener("click", handleAllClearClick);
+ALL_CLEAR_BUTTON.addEventListener("click", handleAllClearClick);
 EQUAL_BUTTON.addEventListener("click", handleEqualClick);
 EQUAL_BUTTON.addEventListener("click", renderImmediateResult);
 PLUS_BUTTON.addEventListener("click", handlePlusClick);
