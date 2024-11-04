@@ -67,19 +67,15 @@ function handleAllClearClick() {
 
 function handleEqualClick() {
   SCREEN_EQUAL.classList.add("active");
-  // setState("currentOperation", "=");
-  // setState("currentOperand", "");
 }
 
 function handlePlusClick() {
   setState("currentOperation", "+");
-  // setState("fixedResult", parseFloat(state.currentOperand));
   setState("currentOperand", "");
 }
 
 function handleMultiplyClick() {
   setState("currentOperation", "x");
-  // setState("fixedResult", parseFloat(state.currentOperand));
   setState("currentOperand", "");
 }
 
