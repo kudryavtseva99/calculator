@@ -1,0 +1,92 @@
+.calc {
+  margin: 50px auto;
+  width: 356px;
+  height: 536px;
+  border-radius: 48px;
+  background: #2d2a37;
+  font-family: "Rubik";
+  color: white;
+  /* font-weight: 500; */
+  padding: 18px;
+  box-shadow: 0px 7px 7px #4f4f4f;
+}
+
+.calc-screen {
+  height: 125px;
+  padding: 25px;
+}
+
+.screen-values {
+  text-align: right;
+  color: #6b6b6b;
+  /* font-weight: 500; */
+  margin-bottom: 20px;
+}
+
+.result-wrapper {
+  /* font-weight: 400; */
+  color: #ebebeb;
+  font-size: 34px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.screen-equal {
+  padding-top: 10px;
+  font-size: 20px;
+  color: #6b6b6b;
+}
+
+.keybord {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  grid-template-areas:
+    "ac plus-mine procent division"
+    "seven eight nine multiply"
+    "four five six minus"
+    "one two three plus"
+    "zero zero dot equal";
+  gap: 7px;
+  justify-items: center;
+}
+
+.button {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    ),
+    #2d2a37;
+  box-shadow: 0px 4px 4px black;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 62px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 24px;
+}
+
+.zero {
+  grid-area: zero;
+  width: 100%;
+  border-radius: 35px;
+}
+
+.button:hover {
+  filter: brightness(120%);
+}
+
+.button:active {
+  filter: brightness(90%);
+}
+
+.bg-purple {
+  background: #462878;
+}
+
+.purple-letters {
+  color: #975dfa;
+}
