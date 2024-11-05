@@ -55,6 +55,9 @@ function handleKeyboardClick(event) {
   const btnValue = event.target.innerHTML;
   if (!BTN_VALUES.includes(btnValue) || btnValue === "AC") {
     return;
+    // We added this condition to record the necessary values of keyboard clicks in input.
+    // We need to the values of buttons, but if a user clicks anywhere near a button,
+    // the input value will be the target value. The value ascent happens.
   }
   INPUT.value = INPUT.value + btnValue;
 }
@@ -132,7 +135,3 @@ const myCalc = new Calculator();
 function renderImmediateResult() {
   RESULT_SCREEN.innerHTML = state.immediateResult;
 }
-
-// задача: выводить операторы и операнды (типа "3 + 2 + 59")
-// const INPUT_SCREEN = document.querySelector("#myInput");
-// function renderInput() {}
