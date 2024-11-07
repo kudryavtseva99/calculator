@@ -16,11 +16,13 @@
   padding: 25px;
 }
 
-.screen-values {
-  text-align: right;
+.value-input {
   color: #6b6b6b;
   /* font-weight: 500; */
   margin-bottom: 20px;
+  border: 2px solid #4f4f4f;
+  width: 100%;
+  text-align: right;
 }
 
 .result-wrapper {
@@ -30,15 +32,19 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .screen-equal {
-  padding-top: 10px;
   font-size: 20px;
   color: #6b6b6b;
 }
 
-.keybord {
+.active {
+  color: white;
+}
+
+.keyboard {
   display: grid;
   /* grid-template-columns: 1fr 1fr 1fr 1fr; */
   grid-template-areas:
