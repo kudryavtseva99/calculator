@@ -7,7 +7,7 @@ let state = {
 
 const setState = (key, payload) => {
   state = { ...state, [key]: payload };
-  renderImmediateResult();
+  // renderImmediateResult();
   console.log(state);
 };
 
@@ -16,6 +16,13 @@ function setInitialState() {
   setState("immediateResult", 0);
   setState("fixedResult", 0);
   setState("currentOperand", "");
+}
+
+function render() {
+  RESULT_SCREEN.innerHTML = state.immediateResult;
+  if (ALL_CLEAR_BUTTON) {
+    INPUT.value = "";
+  }
 }
 
 const DIGIT_BUTTONS = document.querySelectorAll(".digit");
@@ -37,7 +44,7 @@ const MINUS_BUTTON = document.querySelector(".minus");
 KEYBOARD.addEventListener("click", handleKeyboardClick);
 ALL_CLEAR_BUTTON.addEventListener("click", handleAllClearClick);
 EQUAL_BUTTON.addEventListener("click", handleEqualClick);
-EQUAL_BUTTON.addEventListener("click", renderImmediateResult);
+EQUAL_BUTTON.addEventListener("click", render);
 PLUS_BUTTON.addEventListener("click", handlePlusClick);
 MULTIPLY_BUTTON.addEventListener("click", handleMultiplyClick);
 DIVISION_BUTTON.addEventListener("click", handleDivisionClick);
@@ -64,8 +71,7 @@ function handleKeyboardClick(event) {
 
 function handleAllClearClick() {
   setInitialState();
-  INPUT.value = "";
-  RESULT_SCREEN.innerHTML = 0;
+  render();
 }
 
 function handleEqualClick() {
@@ -131,7 +137,6 @@ function Calculator() {
 
 const myCalc = new Calculator();
 
-// рендер результата
-function renderImmediateResult() {
-  RESULT_SCREEN.innerHTML = state.immediateResult;
-}
+// function renderImmediateResult() {
+//   RESULT_SCREEN.innerHTML = state.immediateResult;
+// }
