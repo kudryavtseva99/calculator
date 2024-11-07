@@ -7,7 +7,7 @@ let state = {
 
 const setState = (key, payload) => {
   state = { ...state, [key]: payload };
-  // renderImmediateResult();
+  render();
   console.log(state);
 };
 
@@ -19,10 +19,30 @@ function setInitialState() {
 }
 
 function render() {
-  RESULT_SCREEN.innerHTML = state.immediateResult;
-  if (ALL_CLEAR_BUTTON) {
+  const { currentOperand, currentOperation, fixedResult, immediateResult } =
+    state;
+  const isAllClearButtonClicked =
+    currentOperand === "" &&
+    currentOperation === null &&
+    fixedResult === 0 &&
+    immediateResult === 0;
+
+  const isEqualClicked =
+    currentOperand === "" && currentOperation === null && fixedResult !== 0;
+
+  if (isAllClearButtonClicked) {
     INPUT.value = "";
+    RESULT_SCREEN.innerHTML = 0;
+    SCREEN_EQUAL.classList.remove("active");
+
+    return;
   }
+  if (isEqualClicked) {
+    SCREEN_EQUAL.classList.add("active");
+    INPUT.value = "";
+    return;
+  }
+  RESULT_SCREEN.innerHTML = state.immediateResult;
 }
 
 const DIGIT_BUTTONS = document.querySelectorAll(".digit");
@@ -44,7 +64,6 @@ const MINUS_BUTTON = document.querySelector(".minus");
 KEYBOARD.addEventListener("click", handleKeyboardClick);
 ALL_CLEAR_BUTTON.addEventListener("click", handleAllClearClick);
 EQUAL_BUTTON.addEventListener("click", handleEqualClick);
-EQUAL_BUTTON.addEventListener("click", render);
 PLUS_BUTTON.addEventListener("click", handlePlusClick);
 MULTIPLY_BUTTON.addEventListener("click", handleMultiplyClick);
 DIVISION_BUTTON.addEventListener("click", handleDivisionClick);
@@ -60,7 +79,7 @@ OPERATOR_BUTTONS.forEach((btn) => {
 
 function handleKeyboardClick(event) {
   const btnValue = event.target.innerHTML;
-  if (!BTN_VALUES.includes(btnValue) || btnValue === "AC") {
+  if (!BTN_VALUES.includes(btnValue) || btnValue === "AC" || btnValue === "=") {
     return;
     // We added this condition to record the necessary values of keyboard clicks in input.
     // We need to the values of buttons, but if a user clicks anywhere near a button,
@@ -75,7 +94,8 @@ function handleAllClearClick() {
 }
 
 function handleEqualClick() {
-  SCREEN_EQUAL.classList.add("active");
+  setState("currentOperation", null);
+  setState("currentOperand", "");
 }
 
 function handlePlusClick() {
@@ -136,7 +156,3 @@ function Calculator() {
 }
 
 const myCalc = new Calculator();
-
-// function renderImmediateResult() {
-//   RESULT_SCREEN.innerHTML = state.immediateResult;
-// }
