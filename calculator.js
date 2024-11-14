@@ -46,6 +46,7 @@ function render() {
 
   const maxLength = 12;
   if (RESULT_SCREEN.textContent.length > maxLength) {
+    RESULT_SCREEN.innerHTML = state.immediateResult;
     RESULT_SCREEN.textContent =
       RESULT_SCREEN.textContent.slice(0, maxLength) + "…";
   }
@@ -68,6 +69,7 @@ const DIVISION_BUTTON = document.querySelector(".division");
 const MINUS_BUTTON = document.querySelector(".minus");
 
 KEYBOARD.addEventListener("click", handleKeyboardClick);
+window.addEventListener("keydown", handlePhysicalKeyboardInput);
 ALL_CLEAR_BUTTON.addEventListener("click", handleAllClearClick);
 EQUAL_BUTTON.addEventListener("click", handleEqualClick);
 PLUS_BUTTON.addEventListener("click", handlePlusClick);
@@ -92,6 +94,25 @@ function handleKeyboardClick(event) {
     // the input value will be the target value. The value ascent happens.
   }
   INPUT.value = INPUT.value + btnValue;
+}
+
+function handlePhysicalKeyboardInput(event) {
+  const allowedKeys = BTN_VALUES;
+  console.log(allowedKeys);
+
+  if (allowedKeys.includes(event.key)) {
+    INPUT.value = INPUT.value + event.key;
+    setState("currentOperand", state.currentOperand + event.key);
+    myCalc.calculate(state.currentOperation);
+  }
+
+  if (event.key === "Enter") {
+    handleEqualClick();
+  }
+
+  if (event.key === "ESC") {
+    handleAllClearClick();
+  }
 }
 
 function handleAllClearClick() {
