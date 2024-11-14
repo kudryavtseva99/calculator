@@ -43,6 +43,12 @@ function render() {
     return;
   }
   RESULT_SCREEN.innerHTML = state.immediateResult;
+
+  const maxLength = 12;
+  if (RESULT_SCREEN.textContent.length > maxLength) {
+    RESULT_SCREEN.textContent =
+      RESULT_SCREEN.textContent.slice(0, maxLength) + "…";
+  }
 }
 
 const DIGIT_BUTTONS = document.querySelectorAll(".digit");
