@@ -69,7 +69,7 @@ const DIVISION_BUTTON = document.querySelector(".division");
 const MINUS_BUTTON = document.querySelector(".minus");
 
 KEYBOARD.addEventListener("click", handleKeyboardClick);
-window.addEventListener("keydown", handlePhysicalKeyboardInput);
+window.addEventListener("keydown", handlePhysicalKeyboardClick);
 ALL_CLEAR_BUTTON.addEventListener("click", handleAllClearClick);
 EQUAL_BUTTON.addEventListener("click", handleEqualClick);
 PLUS_BUTTON.addEventListener("click", handlePlusClick);
@@ -96,21 +96,14 @@ function handleKeyboardClick(event) {
   INPUT.value = INPUT.value + btnValue;
 }
 
-function handlePhysicalKeyboardInput(event) {
-  const allowedKeys = BTN_VALUES;
-  console.log(allowedKeys);
-
-  if (allowedKeys.includes(event.key)) {
-    INPUT.value = INPUT.value + event.key;
-    setState("currentOperand", state.currentOperand + event.key);
-    myCalc.calculate(state.currentOperation);
-  }
-
-  if (event.key === "Enter") {
+function handlePhysicalKeyboardClick(event) {
+  const key = event.key;
+  if (BTN_VALUES.includes(key)) {
+    INPUT.value = INPUT.value + key;
+    handleDigitClickFromKeyboard(key);
+  } else if (key === "Enter") {
     handleEqualClick();
-  }
-
-  if (event.key === "ESC") {
+  } else if (key === "Escape") {
     handleAllClearClick();
   }
 }
@@ -153,6 +146,13 @@ function handleDigitClick(event) {
   myCalc.calculate(state.currentOperation);
 }
 
+function handleDigitClickFromKeyboard(key) {
+  const digit = key;
+  const currentOperand = state.currentOperand;
+  const nextOperand = `${currentOperand}${digit}`;
+  setState("currentOperand", nextOperand);
+  myCalc.calculate(state.currentOperation);
+}
 // реализация вычислительных методов операндов
 function Calculator() {
   this.methods = {
