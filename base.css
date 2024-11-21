@@ -1,0 +1,20 @@
+.navigation {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  top: 30px;
+}
+
+.nav_buttons {
+  padding: 10px 20px;
+  background: #2d2a37;
+  color: #ebebeb;
+  border: none;
+  cursor: pointer;
+  border-radius: 48px;
+  margin: 5px;
+}
+
+.nav_buttons:hover {
+  background: #462878;
+}
