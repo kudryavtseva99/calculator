@@ -1,0 +1,83 @@
+.currency-converter {
+  font-family: "Rubik";
+  height: 150px;
+  margin: 50px auto;
+  background: #2d2a37;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 7px 7px #4f4f4f;
+  max-width: 400px;
+  width: 100%;
+}
+
+.converter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.amount {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  color: #fff;
+  border: 1px solid #4f4f4f;
+  border-radius: 5px;
+}
+
+.convertered-amount {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #4f4f4f;
+  border-radius: 5px;
+  color: #fff;
+  width: 100%;
+  text-align: right;
+}
+
+.converter-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.currency1,
+.currency2,
+.swap-button,
+.clear-button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #4f4f4f;
+  border-radius: 5px;
+  color: #fff;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.exchange {
+  background: #2d2a37;
+}
+
+.exchange:hover {
+  background: #2d2a37;
+}
+
+.clear-button {
+  background: #462878;
+  color: #fff;
+}
+
+.clear-button:hover {
+  filter: brightness(120%);
+}
+
+.swap-button {
+  background: #462878;
+  color: #fff;
+}
+
+.swap-button:hover {
+  filter: brightness(120%);
+}

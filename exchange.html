@@ -32,18 +32,29 @@
       </nav>
       <div class="currency-converter">
         <div class="converter-row">
-          <input type="text" id="amount" placeholder="Введите сумму" />
-          <input type="text" id="convertered-amount" value="0 RSD" readonly />
+          <input
+            type="text"
+            id="amount"
+            class="amount"
+            placeholder="Введите сумму"
+          />
+          <input
+            type="text"
+            id="convertered-amount"
+            class="convertered-amount"
+            value="0 RSD"
+            readonly
+          />
         </div>
         <div class="converter-controls">
-          <select name="currency1" id="currency1">
-            <option value="USD">USD</option>
-            <option value="RSD">RSD</option>
+          <select name="currency1" class="currency1">
+            <option class="exchange" value="USD">USD</option>
+            <option class="exchange" value="RSD">RSD</option>
           </select>
           <button class="swap-button">⇄</button>
-          <select name="currency2" id="currency2">
-            <option value="RSD">RSD</option>
-            <option value="USD">USD</option>
+          <select name="currency2" class="currency2">
+            <option class="exchange" value="RSD">RSD</option>
+            <option class="exchange" value="USD">USD</option>
           </select>
           <button class="clear-button">✖</button>
         </div>
