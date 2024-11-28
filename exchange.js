@@ -11,6 +11,12 @@ const CLEAR_BUTTON = document.querySelector(".clear-button");
 let usdData;
 let rsdData;
 
+AMOUNT_INPUT.addEventListener("input", updateConvertedAmount);
+CURRENCY1.addEventListener("change", updateConvertedAmount);
+CURRENCY2.addEventListener("change", updateConvertedAmount);
+SWAP_BUTTON.addEventListener("click", swapCurrencies);
+CLEAR_BUTTON.addEventListener("click", clearCurrencies);
+
 // получаем курс валют через апи
 fetch(url)
   .then((response) => response.json())
@@ -34,19 +40,13 @@ function updateConvertedAmount() {
     rate = rsdData;
   } else {
     CURRENCY1.value === "RSD" && CURRENCY2.value === "USD";
-    rate = 1 / rsdData;
+    rate = usdData / rsdData;
   }
 
-  CONVERTED_AMOUNT.value = `${Math.ceil(amountValue * rate)} ${
+  CONVERTED_AMOUNT.value = `${(amountValue * rate).toFixed(2)} ${
     CURRENCY2.value
   }`;
 }
-
-AMOUNT_INPUT.addEventListener("input", updateConvertedAmount);
-CURRENCY1.addEventListener("change", updateConvertedAmount);
-CURRENCY2.addEventListener("change", updateConvertedAmount);
-SWAP_BUTTON.addEventListener("click", swapCurrencies);
-CLEAR_BUTTON.addEventListener("click", clearCurrencies);
 
 // функция для кнопки "смена местами валют"
 function swapCurrencies() {
