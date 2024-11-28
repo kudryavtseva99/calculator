@@ -45,3 +45,12 @@ function updateConvertedAmount() {
 AMOUNT_INPUT.addEventListener("input", updateConvertedAmount);
 CURRENCY1.addEventListener("change", updateConvertedAmount);
 CURRENCY2.addEventListener("change", updateConvertedAmount);
+SWAP_BUTTON.addEventListener("click", swapCurrencies);
+
+// функция для кнопки "смена местами валют"
+function swapCurrencies() {
+  const currentCurrency = CURRENCY1.value;
+  CURRENCY1.value = CURRENCY2.value;
+  CURRENCY2.value = currentCurrency;
+  updateConvertedAmount();
+}
