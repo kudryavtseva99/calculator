@@ -46,6 +46,7 @@ AMOUNT_INPUT.addEventListener("input", updateConvertedAmount);
 CURRENCY1.addEventListener("change", updateConvertedAmount);
 CURRENCY2.addEventListener("change", updateConvertedAmount);
 SWAP_BUTTON.addEventListener("click", swapCurrencies);
+CLEAR_BUTTON.addEventListener("click", clearCurrencies);
 
 // функция для кнопки "смена местами валют"
 function swapCurrencies() {
@@ -53,4 +54,13 @@ function swapCurrencies() {
   CURRENCY1.value = CURRENCY2.value;
   CURRENCY2.value = currentCurrency;
   updateConvertedAmount();
+}
+
+// функция для кнопки "очистки"
+
+function clearCurrencies() {
+  AMOUNT_INPUT.value = "";
+  CONVERTED_AMOUNT.value = `0 ${CURRENCY2.value}`;
+  CURRENCY1.value = "USD";
+  CURRENCY2.value = "RSD";
 }
