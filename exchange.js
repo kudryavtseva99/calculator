@@ -48,22 +48,30 @@ function updateConvertedAmount() {
     return;
   }
 
-  let rate;
-  if (CURRENCY1.value === CURRENCY2.value) {
-    rate = usdData;
-  }
+  const exchangeRate1 = currenciesList[CURRENCY1.value];
+  const exchangeRate2 = currenciesList[CURRENCY2.value];
 
-  // if (CURRENCY1.value === "USD" && CURRENCY2.value === "RSD") {
-  //   rate = rsdData;
-  //   CURRENCY2.disabled = true;
-  // } else if (CURRENCY1.value === "RSD" && CURRENCY2.value === "USD") {
-  //   rate = usdData / rsdData;
-  //   CURRENCY1.disabled = true;
-  // }
-  // CONVERTED_AMOUNT.value = `${(amountValue * rate).toFixed(2)} ${
-  //   CURRENCY2.value
-  // }`;
+  if (exchangeRate1 && exchangeRate2) {
+    const rateAmount = (amountValue / exchangeRate1) * exchangeRate2;
+    CONVERTED_AMOUNT.value = `${rateAmount.toFixed(2)} ${CURRENCY2.value}`;
+  }
 }
+
+// логика для двух валют
+// if (CURRENCY1.value === CURRENCY2.value) {
+//   rate = usdData;
+// }
+
+// if (CURRENCY1.value === "USD" && CURRENCY2.value === "RSD") {
+//   rate = rsdData;
+//   CURRENCY2.disabled = true;
+// } else if (CURRENCY1.value === "RSD" && CURRENCY2.value === "USD") {
+//   rate = usdData / rsdData;
+//   CURRENCY1.disabled = true;
+// }
+// CONVERTED_AMOUNT.value = `${(amountValue * rate).toFixed(2)} ${
+//   CURRENCY2.value
+// }`;
 
 // функция для кнопки "смена местами валют"
 function swapCurrencies() {
