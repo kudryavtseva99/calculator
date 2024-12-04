@@ -86,6 +86,6 @@ function swapCurrencies() {
 function clearCurrencies() {
   AMOUNT_INPUT.value = "";
   CONVERTED_AMOUNT.value = `0 ${CURRENCY2.value}`;
-  CURRENCY1.disabled = false;
-  CURRENCY2.disabled = false;
+  // CURRENCY1.disabled = false;
+  // CURRENCY2.disabled = false;
 }
