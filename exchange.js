@@ -25,11 +25,7 @@ CLEAR_BUTTON.addEventListener("click", clearCurrencies);
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
-    rates = {
-      RSD: data.rates.RSD,
-      USD: data.rates.USD,
-      EUR: data.rates.EUR,
-    };
+    rates = data.rates;
     console.log("Курсы валют получены:", rates);
     currencies.forEach((currency) => {
       if (rates.hasOwnProperty(currency)) {
@@ -39,6 +35,22 @@ fetch(url)
     console.log(currenciesList);
   })
   .catch((error) => console.error("Error fetching exchange rates:", error));
+
+// функция для динамического добавления опций в выпадающем списке
+function fillCurrencyOptions() {
+  currencies.forEach((currency) => {
+    const option1 = document.createElement("option");
+    option1.value = currency;
+    option1.textContent = currency;
+    CURRENCY1.appendChild(option1);
+
+    const option2 = document.createElement("option");
+    option2.value = currency;
+    option2.textContent = currency;
+    CURRENCY2.appendChild(option2);
+  });
+}
+fillCurrencyOptions();
 
 // функция для обновления конверт суммы
 function updateConvertedAmount() {
