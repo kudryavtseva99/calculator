@@ -11,10 +11,26 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="base.css" />
     <link rel="stylesheet" href="calculator.css" />
+    <link rel="stylesheet" href="exchange.css" />
   </head>
   <body class="body">
     <main>
+      <nav class="navigation">
+        <button
+          class="nav_buttons"
+          onclick="window.location.href='calculator.html'"
+        >
+          Калькулятор
+        </button>
+        <button
+          class="nav_buttons"
+          onclick="window.location.href=' exchange.html'"
+        >
+          Курс валют
+        </button>
+      </nav>
       <div class="calc">
         <div class="calc-screen">
           <input type="text" value="" class="value-input" id="myInput" />
@@ -53,5 +69,6 @@
     </main>
 
     <script src="./calculator.js"></script>
+    <script src="./exchange.js"></script>
   </body>
 </html>
