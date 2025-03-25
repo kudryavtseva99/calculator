@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="exchange.css" />
+  </head>
+  <body class="body">
+    <main>
+      <nav class="navigation">
+        <button
+          class="nav_buttons"
+          onclick="window.location.href='calculator.html'"
+        >
+          Калькулятор
+        </button>
+        <button
+          class="nav_buttons"
+          onclick="window.location.href=' exchange.html'"
+        >
+          Курс валют
+        </button>
+      </nav>
+      <div class="currency-converter">
+        <div class="converter-row">
+          <input
+            type="text"
+            id="amount"
+            class="amount"
+            placeholder="Введите сумму"
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            id="converted-amount"
+            class="converted-amount"
+            value="0"
+            readonly
+          />
+        </div>
+        <div class="converter-controls">
+          <select name="currency1" class="currency1">
+            <!-- <option class="exchange" value="USD">USD</option>
+            <option class="exchange" value="RSD">RSD</option>
+            <option class="exchange" value="EUR">EUR</option> -->
+          </select>
+          <button class="swap-button">⇄</button>
+          <select name="currency2" class="currency2">
+            <!-- <option class="exchange" value="RSD">RSD</option>
+            <option class="exchange" value="USD">USD</option>
+            <option class="exchange" value="EUR">EUR</option> -->
+          </select>
+          <button class="clear-button">✖</button>
+        </div>
+      </div>
+    </main>
+    <script src="exchange.js"></script>
+  </body>
+</html>

@@ -11,46 +11,64 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="base.css" />
     <link rel="stylesheet" href="calculator.css" />
+    <link rel="stylesheet" href="exchange.css" />
   </head>
   <body class="body">
     <main>
+      <nav class="navigation">
+        <button
+          class="nav_buttons"
+          onclick="window.location.href='calculator.html'"
+        >
+          Калькулятор
+        </button>
+        <button
+          class="nav_buttons"
+          onclick="window.location.href=' exchange.html'"
+        >
+          Курс валют
+        </button>
+      </nav>
       <div class="calc">
         <div class="calc-screen">
-          <p class="screen-values">1 + 1</p>
+          <input type="text" value="" class="value-input" id="myInput" />
+          <!-- <p class="screen-values">1 + 1</p> -->
           <div class="result-wrapper">
             <p class="screen-equal">=</p>
-            <p class="result">2</p>
+            <p class="result">0</p>
           </div>
         </div>
-        <div class="keybord">
+        <div class="keyboard">
           <div class="button ac bg-dark purple-letters">AC</div>
-          <div class="button plus-minus bg-dark">+/-</div>
-          <div class="button procent bg-dark">%</div>
-          <div class="button division bg-purple">/</div>
+          <div class="button operation plus-minus bg-dark">+/-</div>
+          <div class="button operation procent bg-dark">%</div>
+          <div class="button operation division bg-purple">/</div>
 
-          <div class="button seven bg-dark">7</div>
-          <div class="button eight bg-dark">8</div>
-          <div class="button nine bg-dark">9</div>
-          <div class="button multiply bg-purple">x</div>
+          <div class="button digit seven bg-dark">7</div>
+          <div class="button digit eight bg-dark">8</div>
+          <div class="button digit nine bg-dark">9</div>
+          <div class="button operation multiply bg-purple">x</div>
 
-          <div class="button four bg-dark">4</div>
-          <div class="button five bg-dark">5</div>
-          <div class="button six bg-dark">6</div>
-          <div class="button minus bg-purple">-</div>
+          <div class="button digit four bg-dark">4</div>
+          <div class="button digit five bg-dark">5</div>
+          <div class="button digit six bg-dark">6</div>
+          <div class="button operation minus bg-purple">-</div>
 
-          <div class="button one bg-dark">1</div>
-          <div class="button two bg-dark">2</div>
-          <div class="button three bg-dark">3</div>
-          <div class="button plus bg-purple">+</div>
+          <div class="button digit one bg-dark">1</div>
+          <div class="button digit two bg-dark">2</div>
+          <div class="button digit three bg-dark">3</div>
+          <div class="button operation plus bg-purple">+</div>
 
-          <div class="button zero bg-dark">0</div>
-          <div class="button dot bg-dark">.</div>
-          <div class="button equal bg-purple">=</div>
+          <div class="button digit zero bg-dark">0</div>
+          <div class="button digit dot bg-dark">.</div>
+          <div class="button operation equal bg-purple">=</div>
         </div>
       </div>
     </main>
 
     <script src="./calculator.js"></script>
+    <script src="./exchange.js"></script>
   </body>
 </html>
