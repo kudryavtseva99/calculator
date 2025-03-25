@@ -3,8 +3,8 @@ const url = `https://openexchangerates.org/api/latest.json?app_id=${apiKey}`;
 
 const AMOUNT_INPUT = document.querySelector(".amount");
 const CONVERTED_AMOUNT = document.querySelector(".converted-amount");
-const CURRENCY1 = document.querySelector(".currency1");
-const CURRENCY2 = document.querySelector(".currency2");
+const CURRENCY1_SELECTOR = document.querySelector(".currency1");
+const CURRENCY2_SELECTOR = document.querySelector(".currency2");
 const SWAP_BUTTON = document.querySelector(".swap-button");
 const CLEAR_BUTTON = document.querySelector(".clear-button");
 
@@ -16,8 +16,8 @@ let currencies = ["RSD", "USD", "EUR"];
 let currenciesList = {};
 
 AMOUNT_INPUT.addEventListener("input", updateConvertedAmount);
-CURRENCY1.addEventListener("change", updateConvertedAmount);
-CURRENCY2.addEventListener("change", updateConvertedAmount);
+CURRENCY1_SELECTOR.addEventListener("change", updateConvertedAmount);
+CURRENCY2_SELECTOR.addEventListener("change", updateConvertedAmount);
 SWAP_BUTTON.addEventListener("click", swapCurrencies);
 CLEAR_BUTTON.addEventListener("click", clearCurrencies);
 
@@ -25,11 +25,7 @@ CLEAR_BUTTON.addEventListener("click", clearCurrencies);
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
-    rates = {
-      RSD: data.rates.RSD,
-      USD: data.rates.USD,
-      EUR: data.rates.EUR,
-    };
+    rates = data.rates;
     console.log("Курсы валют получены:", rates);
     currencies.forEach((currency) => {
       if (rates.hasOwnProperty(currency)) {
@@ -40,44 +36,46 @@ fetch(url)
   })
   .catch((error) => console.error("Error fetching exchange rates:", error));
 
+// функция для динамического добавления опций в выпадающем списке
+function fillCurrencyOptions() {
+  currencies.forEach((currency) => {
+    const option1 = document.createElement("option");
+    option1.value = currency;
+    option1.textContent = currency;
+    CURRENCY1_SELECTOR.appendChild(option1);
+
+    const option2 = document.createElement("option");
+    option2.value = currency;
+    option2.textContent = currency;
+    CURRENCY2_SELECTOR.appendChild(option2);
+  });
+}
+fillCurrencyOptions();
+
 // функция для обновления конверт суммы
 function updateConvertedAmount() {
   const amountValue = parseFloat(AMOUNT_INPUT.value);
   if (isNaN(amountValue)) {
-    CONVERTED_AMOUNT.value = `0 ${CURRENCY2.value}`;
+    CONVERTED_AMOUNT.value = `0 ${CURRENCY2_SELECTOR.value}`;
     return;
   }
 
-  const exchangeRate1 = currenciesList[CURRENCY1.value];
-  const exchangeRate2 = currenciesList[CURRENCY2.value];
+  const exchangeRate1 = currenciesList[CURRENCY1_SELECTOR.value];
+  const exchangeRate2 = currenciesList[CURRENCY2_SELECTOR.value];
 
   if (exchangeRate1 && exchangeRate2) {
     const rateAmount = (amountValue / exchangeRate1) * exchangeRate2;
-    CONVERTED_AMOUNT.value = `${rateAmount.toFixed(2)} ${CURRENCY2.value}`;
+    CONVERTED_AMOUNT.value = `${rateAmount.toFixed(2)} ${
+      CURRENCY2_SELECTOR.value
+    }`;
   }
 }
 
-// логика для двух валют
-// if (CURRENCY1.value === CURRENCY2.value) {
-//   rate = usdData;
-// }
-
-// if (CURRENCY1.value === "USD" && CURRENCY2.value === "RSD") {
-//   rate = rsdData;
-//   CURRENCY2.disabled = true;
-// } else if (CURRENCY1.value === "RSD" && CURRENCY2.value === "USD") {
-//   rate = usdData / rsdData;
-//   CURRENCY1.disabled = true;
-// }
-// CONVERTED_AMOUNT.value = `${(amountValue * rate).toFixed(2)} ${
-//   CURRENCY2.value
-// }`;
-
 // функция для кнопки "смена местами валют"
 function swapCurrencies() {
-  const currentCurrency = CURRENCY1.value;
-  CURRENCY1.value = CURRENCY2.value;
-  CURRENCY2.value = currentCurrency;
+  const currentCurrency = CURRENCY1_SELECTOR.value;
+  CURRENCY1_SELECTOR.value = CURRENCY2_SELECTOR.value;
+  CURRENCY2_SELECTOR.value = currentCurrency;
   updateConvertedAmount();
 }
 
@@ -85,7 +83,5 @@ function swapCurrencies() {
 
 function clearCurrencies() {
   AMOUNT_INPUT.value = "";
-  CONVERTED_AMOUNT.value = `0 ${CURRENCY2.value}`;
-  // CURRENCY1.disabled = false;
-  // CURRENCY2.disabled = false;
+  CONVERTED_AMOUNT.value = `0 ${CURRENCY2_SELECTOR.value}`;
 }

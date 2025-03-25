@@ -56,11 +56,11 @@
   cursor: pointer;
 }
 
-.exchange {
+option {
   background: #2d2a37;
 }
 
-.exchange:hover {
+option:hover {
   background: #2d2a37;
 }
 
