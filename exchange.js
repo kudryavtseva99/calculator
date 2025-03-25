@@ -69,22 +69,6 @@ function updateConvertedAmount() {
   }
 }
 
-// логика для двух валют
-// if (CURRENCY1.value === CURRENCY2.value) {
-//   rate = usdData;
-// }
-
-// if (CURRENCY1.value === "USD" && CURRENCY2.value === "RSD") {
-//   rate = rsdData;
-//   CURRENCY2.disabled = true;
-// } else if (CURRENCY1.value === "RSD" && CURRENCY2.value === "USD") {
-//   rate = usdData / rsdData;
-//   CURRENCY1.disabled = true;
-// }
-// CONVERTED_AMOUNT.value = `${(amountValue * rate).toFixed(2)} ${
-//   CURRENCY2.value
-// }`;
-
 // функция для кнопки "смена местами валют"
 function swapCurrencies() {
   const currentCurrency = CURRENCY1.value;
@@ -98,6 +82,4 @@ function swapCurrencies() {
 function clearCurrencies() {
   AMOUNT_INPUT.value = "";
   CONVERTED_AMOUNT.value = `0 ${CURRENCY2.value}`;
-  // CURRENCY1.disabled = false;
-  // CURRENCY2.disabled = false;
 }
